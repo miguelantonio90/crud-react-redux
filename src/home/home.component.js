@@ -12,7 +12,7 @@ const drawerWidth = 240;
 
 const styles = theme => ({
   root: {
-    flexGrow: 1,
+    flexGrow: 'flex',
   },
   appFrame: {
     zIndex: 1,
@@ -32,7 +32,7 @@ const styles = theme => ({
   },
   drawerPaper: {
     position: 'relative',
-    width: drawerWidth,
+   // width: drawerWidth,
   },
   toolbar: theme.mixins.toolbar,
   content: {

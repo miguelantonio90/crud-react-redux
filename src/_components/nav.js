@@ -32,6 +32,7 @@ const styles = theme => ({
     },
     appBar: {
         width: `calc(100% - ${drawerWidth}px)`,
+        marginLeft: drawerWidth
     },
     'appBar-left': {
         marginLeft: drawerWidth,
@@ -39,8 +40,11 @@ const styles = theme => ({
     'appBar-right': {
         marginRight: drawerWidth,
     },
+    drawer: {
+        width: drawerWidth,
+        flexShrink: 0
+    },
     drawerPaper: {
-        position: 'relative',
         width: drawerWidth,
     },
     toolbar: theme.mixins.toolbar,
@@ -74,12 +78,15 @@ class Navigation extends React.Component {
 
         return (
             <Drawer
+                className={classes.drawer}
                 variant="permanent"
                 classes={{
                     paper: classes.drawerPaper,
                 }}
                 anchor={anchor}
             >
+                <div className={classes.toolbar}/>
+                <Divider/>
                 <List component="nav">
                     <ListItem button component='a' href="/home">
                         <ListItemIcon>
