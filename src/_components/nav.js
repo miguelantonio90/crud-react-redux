@@ -11,7 +11,6 @@ import {userActions} from '../_actions';
 import {connect} from 'react-redux';
 import HomeIcon from '@material-ui/icons/Home';
 import LogoutIcon from '@material-ui/icons/HighlightOff';
-import VendorIcon from '@material-ui/icons/CardTravel';
 import CiudadIcon from '@material-ui/icons/LocationCity';
 import ProfesorIcon from '@material-ui/icons/People'
 import GrupoIcon from '@material-ui/icons/Accessibility'

@@ -50,3 +50,15 @@ export function logoutUser(){
         token: ''
     }
 }
+
+export function updatedUserInfo(){
+    return{
+        type: "USER_UPDATED"
+    }
+}
+
+export function createUserInfo(){
+    return{
+        type: "USER_CREATED_SUCCESSFULLY"
+    }
+}

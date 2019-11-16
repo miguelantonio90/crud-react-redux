@@ -1,5 +1,6 @@
 import {userService} from '../_services/';
 import {history} from '../_helpers';
+import {createUserInfo,updatedUserInfo} from "./user.actions";
 
 export const grupoAction = {
     getGrupo,
@@ -63,7 +64,7 @@ function getGrupoById(id) {
 
 function onChangeProps(props,event) {
     return dispatch => {
-        dispatch(handleOnChangeProps(props,event.target.value));
+        dispatch(handleOnChangeGrupoProps(props,event.target.value));
     }
 }
 
@@ -103,7 +104,7 @@ export function changeProfesorList(listProfesor) {
     }
 }
 
-export function handleOnChangeProps(props,value) {
+export function handleOnChangeGrupoProps(props,value) {
     return {
         type: "HANDLE_ON_CHANGE",
         props: props,
@@ -117,18 +118,6 @@ export function editGruposDetails(grupo) {
         id: grupo._id,
         name: grupo.name,
         profesor: grupo.profesor
-    }
-}
-
-export function updatedUserInfo() {
-    return {
-        type: "USER_UPDATED"
-    }
-}
-
-export function createUserInfo() {
-    return {
-        type: "USER_CREATED_SUCCESSFULLY"
     }
 }
 

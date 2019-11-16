@@ -1,5 +1,6 @@
-import { userService } from '../_services/';
-import { history } from '../_helpers';
+import {userService} from '../_services/';
+import {history} from '../_helpers';
+import {createUserInfo,updatedUserInfo} from "./user.actions";
 
 export const profesorAction = {
     getProfesor,
@@ -10,87 +11,87 @@ export const profesorAction = {
     deleteProfesorById
 };
 
-function getProfesor(){
+function getProfesor() {
     return dispatch => {
         let apiEndpoint = 'profesores';
         userService.get(apiEndpoint)
-            .then((response)=>{
+            .then((response) => {
                 console.log(response);
                 dispatch(changeProfesoresList(response.data.data));
-            }).catch((err)=>{
+            }).catch((err) => {
             console.log("Error");
             console.log(err);
         })
     };
 }
 
-function createProfesor(payload){
+function createProfesor(payload) {
     return dispatch => {
         let apiEndpoint = 'profesores/';
-        userService.post(apiEndpoint, payload)
-            .then((response)=>{
+        userService.post(apiEndpoint,payload)
+            .then((response) => {
                 dispatch(createUserInfo());
                 history.push('/profesor');
             })
     }
 }
 
-function getProfesorById(id){
+function getProfesorById(id) {
 
     return dispatch => {
-        let apiEndpoint = 'profesores/'+ id;
+        let apiEndpoint = 'profesores/' + id;
         userService.get(apiEndpoint)
-            .then((response)=>{
+            .then((response) => {
                 dispatch(editProfesoresDetails(response.data.data));
             })
     };
 }
 
-function onChangeProps(props, event){
-    return dispatch =>{
-        dispatch(handleOnChangeProps(props, event.target.value));
+function onChangeProps(props,event) {
+    return dispatch => {
+        dispatch(handleOnChangeProfesorProps(props,event.target.value));
     }
 }
 
-function editProfesorInfo(id, payload){
+function editProfesorInfo(id,payload) {
     return dispatch => {
-        let apiEndpoint = 'profesores/'+ id;
-        userService.put(apiEndpoint, payload)
-            .then((response)=>{
+        let apiEndpoint = 'profesores/' + id;
+        userService.put(apiEndpoint,payload)
+            .then((response) => {
                 dispatch(updatedUserInfo());
                 history.push('/profesor');
             })
     }
 }
 
-function deleteProfesorById(id){
+function deleteProfesorById(id) {
     return dispatch => {
-        let apiEndpoint = 'profesores/'+ id;
+        let apiEndpoint = 'profesores/' + id;
         userService.deleteDetail(apiEndpoint)
-            .then((response)=>{
+            .then((response) => {
                 dispatch(deleteProfesoresDetails());
                 dispatch(profesorAction.getProfesor());
             })
     };
 }
 
-export function changeProfesoresList(profesor){
-    return{
+export function changeProfesoresList(profesor) {
+    return {
         type: "FETECHED_ALL_PROFESOR",
         profesor: profesor
     }
 }
 
-export function handleOnChangeProps(props, value){
-    return{
+export function handleOnChangeProfesorProps(props,value) {
+    return {
         type: "HANDLE_ON_CHANGE",
         props: props,
         value: value
     }
 }
 
-export function editProfesoresDetails(profesor){
-    return{
+export function editProfesoresDetails(profesor) {
+    return {
         type: "PROFESOR_DETAIL",
         id: profesor._id,
         name: profesor.name,
@@ -98,20 +99,8 @@ export function editProfesoresDetails(profesor){
     }
 }
 
-export function updatedUserInfo(){
-    return{
-        type: "USER_UPDATED"
-    }
-}
-
-export function createUserInfo(){
-    return{
-        type: "USER_CREATED_SUCCESSFULLY"
-    }
-}
-
-export function deleteProfesoresDetails(){
-    return{
+export function deleteProfesoresDetails() {
+    return {
         type: "DELETED_PROFESOR_DETAILS"
     }
 }

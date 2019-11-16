@@ -1,5 +1,6 @@
 import { userService } from '../_services/';
 import { history } from '../_helpers';
+import {createUserInfo,updatedUserInfo} from "./user.actions";
 
 export const ciudadAction = {
     getCiudad,
@@ -48,7 +49,7 @@ function getCiudadById(id){
 
 function onChangeProps(props, event){
     return dispatch =>{
-        dispatch(handleOnChangeProps(props, event.target.value));
+        dispatch(handleOnChangeCiudadProps(props, event.target.value));
     }
 }
 
@@ -81,7 +82,7 @@ export function changeCiudadesList(ciudad){
     }
 }
 
-export function handleOnChangeProps(props, value){
+export function handleOnChangeCiudadProps(props, value){
     return{
         type: "HANDLE_ON_CHANGE",
         props: props,
@@ -97,18 +98,6 @@ export function editCiudadesDetails(ciudad){
         mobile: ciudad.mobile,
         phone_number: ciudad.phone_number,
         address: ciudad.address
-    }
-}
-
-export function updatedUserInfo(){
-    return{
-        type: "USER_UPDATED"
-    }
-}
-
-export function createUserInfo(){
-    return{
-        type: "USER_CREATED_SUCCESSFULLY"
     }
 }
 
